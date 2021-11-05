@@ -17,6 +17,11 @@ namespace TinyBlazorAdmin
             builder.RootComponents.Add<App>("app");
 
             // set up a delegate to get function token
+            static string functionScope(WebAssemblyHostBuilder builder) =>
+                builder.Configuration
+                    .GetSection(nameof(UrlShortenerSecuredService))
+                    .GetValue<string>(nameof(AzFuncAuthorizationMessageHandler.Scope));
+
             static string functionEndpoint(WebAssemblyHostBuilder builder) =>
                 builder.Configuration
                     .GetSection(nameof(UrlShortenerSecuredService))
@@ -28,7 +33,7 @@ namespace TinyBlazorAdmin
                 options.ProviderOptions
                 .DefaultAccessTokenScopes.Add("user.read");
                 options.ProviderOptions
-                .AdditionalScopesToConsent.Add($"{functionEndpoint(builder)}user_impersonation");
+                .AdditionalScopesToConsent.Add($"{functionScope(builder)}user_impersonation");
                 builder.Configuration.Bind("AzureAd", options.ProviderOptions.Authentication);
             });
 

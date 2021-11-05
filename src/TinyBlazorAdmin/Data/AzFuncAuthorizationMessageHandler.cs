@@ -10,6 +10,7 @@ namespace TinyBlazorAdmin.Data
     public class AzFuncAuthorizationMessageHandler : AuthorizationMessageHandler
     {
         public string Endpoint { get; set; }
+        public string Scope { get; set; }
 
         /// <summary>
         /// Creates a new instance of the <see cref="AzFuncAuthorizationMessageHandler"/>
@@ -25,6 +26,7 @@ namespace TinyBlazorAdmin.Data
         {
             var section = config.GetSection(nameof(UrlShortenerSecuredService));
             Endpoint = section.GetValue<string>(nameof(Endpoint));
+            Endpoint = section.GetValue<string>(nameof(Scope));
             ConfigureHandler(
                 new[] { Endpoint },
                 new[] { string.Concat(Endpoint, "user_impersonation") }
