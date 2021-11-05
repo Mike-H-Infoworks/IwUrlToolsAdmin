@@ -1,0 +1,33 @@
+IwUrlToolsAdmin Project
+Git Project: Mike-H-Infoworks/IwUrlToolsAdmin
+
+Azure:
+	Resource Group: Iwurl-rg
+	Tenant Id: f341eefe-e2cc-499c-bdcc-a9ae816f8053
+
+	Function App:
+		iwurltoolsd26qf
+		Url: https://iwurltoolsd26qf.azurewebsites.net
+		Authentication -> Identity Provider (iwurltools-FunctionApp)
+			App Client Id:8969ca1b-f3f4-434e-befd-e23c0f3061d0
+			Allowed token audiences:
+				api://8969ca1b-f3f4-434e-befd-e23c0f3061d0
+				https://iwurltoolsd26qf.azurewebsites.net
+
+		Azure Active Directory:
+			App Registration: iwurltools-FunctionApp
+			App Client Id: 8969ca1b-f3f4-434e-befd-e23c0f3061d0
+			Authentication:
+				Redirect Uri: https://iwurltoolsd26qf.azurewebsites.net/.auth/login/aad/callback
+				ID tokens checked
+			Expose An API:
+				Scopes:
+					api://8969ca1b-f3f4-434e-befd-e23c0f3061d0/user_impersonation
+
+	Static Web Admin App:
+		TinyBlazorAdmin:
+			Dev Url: https://localhost:44397/
+			Url:https://happy-sea-0f58e1603.azurestaticapps.net
+				Azure Active Directory
+					App Registration: IwUrlToolsAdmin
+					App Client Id: b1854fe2-6839-46fe-873e-3800db35aef4
